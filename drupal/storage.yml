@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{sitename}}-filestore
+  namespace: {{sitename}}
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteMany
+  hostPath:
+    path: /storage/{{sitename}}-filestore
+--- 
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: 
+  name: {{sitename}}-filestore-claim
+  namespace: {{sitename}}
+spec: 
+  accessModes: 
+    - ReadWriteMany
+  storageClassName: ""
+  resources: 
+    requests: 
+      storage: 1Gi
+

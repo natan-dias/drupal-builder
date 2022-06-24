@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: drupal
-  namespace: drupal
+  name: {{sitename}}
+  namespace: {{sitename}}
   labels:
-    app: drupal
+    app: {{sitename}}
 spec: 
   replicas: 1
   selector:
     matchLabels:
-      app: drupal
+      app: {{sitename}}
   template: 
     metadata: 
       labels: 
-        app: drupal
+        app: {{sitename}}
     spec: 
       initContainers:
         - name: init-sites-volume
@@ -52,4 +52,4 @@ spec:
       volumes: 
         - name: vol-drupal
           persistentVolumeClaim: 
-            claimName: drupal-filestore-claim
+            claimName: {{sitename}}-filestore-claim
