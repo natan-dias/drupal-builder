@@ -12,6 +12,6 @@ spec:
     app: {{sitename}}
   ports: 
     - name: {{sitename}}
-      port: 8083
+      port: {{port}}
       targetPort: 80
       protocol: TCP
