@@ -4,7 +4,7 @@ read sitename
 echo Your new Drupal site name is $sitename
 echo Set the port of the new site:
 read port
-echo Your new Drupal site name is $port
+echo Your Drupal PORT is $port
 echo Starting deploy Drupal instance...
 sleep 3
 echo ==== Deploy Namespace ====
