@@ -22,7 +22,7 @@ else
 fi
 sleep 3
 echo ==== Deploy Service ====
-if cat drupal/service.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubectl apply -f -; then
+if cat drupal/service.yml | sed "s/{{sitename}}/$sitename/g" | sed "s/{{port}}/$port/g" | microk8s.kubectl apply -f -; then
      echo “Success”
 else
      echo “Failure, exit status: $?”
