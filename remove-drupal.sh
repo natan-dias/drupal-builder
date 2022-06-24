@@ -5,8 +5,7 @@ echo Your removed Drupal site name is $sitename
 echo Set the port of the old site:
 read port
 echo Your old Drupal PORT is $port
-echo Starting deploy Drupal instance...
-sleep 3
+echo Starting remove Drupal old instance...
 sleep 3
 echo ==== Remove Deployment ====
 if cat drupal/deployment.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubectl delete -f -; then
@@ -28,6 +27,7 @@ if cat drupal/storage.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubectl 
 else
      echo “Failure, exit status: $?”
 fi
+sleep 3
 echo ==== Remove Namespace ====
 if cat drupal/namespace.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubectl delete -f -; then
      echo “Success”
