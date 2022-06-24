@@ -1,0 +1,17 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  name: drupal-mysql-service
+  namespace: drupal
+spec:
+  type: LoadBalancer
+  externalIPs: #To use only in Microk8s or Kubeadm env
+  - 10.0.2.4
+  selector:
+    app: drupal-mysql
+  ports: 
+    - name: mysql
+      port: 3306
+      targetPort: 3306
+      protocol: TCP

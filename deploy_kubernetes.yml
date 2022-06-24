@@ -1,0 +1,14 @@
+---
+- hosts: kubernetes
+  become: yes
+
+  tasks:
+  - name: "Create a namespace"
+    command: microk8s.kubectl apply -f /opt/ansible/drupal-builder/namespace.yml
+
+    #  - name: "Create a deployment"
+    #command: microk8s.kubectl apply -f /opt/ansible/drupal-builder/namespace.yml
+
+    #  - name: "Create a Service"
+    #command: microk8s.kubectl apply -f /opt/ansible/drupal-builder/namespace.yml
+

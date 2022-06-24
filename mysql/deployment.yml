@@ -1,0 +1,43 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: drupal-mysql
+  namespace: drupal
+  labels:
+    app: drupal-mysql
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drupal-mysql
+  template: 
+    metadata: 
+      labels: 
+        app: drupal-mysql
+    spec: 
+      containers: 
+        - name: drupal-mysql
+          image: "mysql:5.7.38"
+          env: 
+          - name: MYSQL_ROOT_PASSWORD
+            value: 1q2w3e4r5t
+          - name: MYSQL_DATABASE
+            value: drupal-database
+          ports:
+          - containerPort: 3306
+          resources:
+            limits:
+              memory: "500Mi"
+              cpu: "100m"
+            requests:
+              memory: "500Mi"
+              cpu: "100m"          
+          volumeMounts: 
+            - name: vol-drupal-mysql
+              mountPath: /var/lib/mysql
+              subPath: dbdata
+      volumes: 
+        - name: vol-drupal-mysql
+          persistentVolumeClaim: 
+            claimName: drupal-mysql-filestore-claim
