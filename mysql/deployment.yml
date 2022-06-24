@@ -2,28 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: drupal-mysql
-  namespace: drupal
+  name: {{sitename}}-mysql
+  namespace: {{sitename}}
   labels:
-    app: drupal-mysql
+    app: {{sitename}}-mysql
 spec: 
   replicas: 1
   selector:
     matchLabels:
-      app: drupal-mysql
+      app: {{sitename}}-mysql
   template: 
     metadata: 
       labels: 
-        app: drupal-mysql
+        app: {{sitename}}-mysql
     spec: 
       containers: 
-        - name: drupal-mysql
+        - name: {{sitename}}-mysql
           image: "mysql:5.7.38"
           env: 
           - name: MYSQL_ROOT_PASSWORD
             value: 1q2w3e4r5t
           - name: MYSQL_DATABASE
-            value: drupal-database
+            value: {{sitename}}-database
           ports:
           - containerPort: 3306
           resources:
@@ -40,4 +40,4 @@ spec:
       volumes: 
         - name: vol-drupal-mysql
           persistentVolumeClaim: 
-            claimName: drupal-mysql-filestore-claim
+            claimName: {{sitename}}-mysql-filestore-claim
