@@ -12,7 +12,7 @@ read port
 
 echo Your Drupal PORT is $port
 
-echo Creating random MySQL Password
+echo Generating random MySQL Password
 
 password=$(openssl rand -base64 16)
 
@@ -92,12 +92,14 @@ microk8s.kubectl get pvc -n $sitename -o wide
 
 echo ===== DATABASE INFORMATION FOR DRUPAL SETUP =====
 DATABASE_NAME=$(microk8s.kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[1].value}')
-#PASSWORD=$(microk8s.kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[0].value}')
-MYSQL_PASSWORD=$(microk8s.kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[0].value}')
+MYSQL_PASSWORD=$(microk8s.kubectl get secret $sitename-mysql-secret -o jsonpath='{.data.password}' | base64 -d)
 SERVICE_HOST_NAME=$(microk8s.kubectl get svc -n $sitename -o jsonpath='{.items[1].metadata.name}')
 MYSQL_PORT=$(microk8s.kubectl get svc $sitename-mysql-service -n $sitename -o jsonpath='{.spec.ports[*].port}')
 
+#IF Use password with clear text: MYSQL_PASSWORD=$(microk8s.kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[0].value}')
+
 echo Database Name is $DATABASE_NAME
+echo Database username is ROOT
 echo Password is $MYSQL_PASSWORD
 echo Host MySQL is $SERVICE_HOST_NAME
 echo MySQL Port is $MYSQL_PORT
