@@ -6,6 +6,12 @@ A simple Drupal 8 site builder for Kubernetes
 
 Deployment is current set to DEV environment, so if you are planning to use that on PRODUCTION environment, please check the YAML files and make the necessary changes
 
+## CONTENT
+
+- MySQL manifest files
+- Drupal manifest files
+- SH script for easy deploy
+
 ## Requirements
 
 ### MicroK8s
