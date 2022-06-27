@@ -52,8 +52,22 @@ It will do the following tasks:
 
 - Site name (it will be the namespace on K8s and also your deployment main name);
 - Port for Drupal (mapped local port for HTTP. Only for DEV);
+- Secret for a Random MySQL Password;
 - Deploy MySQL pod with some default settings;
-- Deploy Drupal 8.6
+- Deploy Drupal 8.6.
+
+At the end of the deploy script, it will be an output with Drupal and Database informations:
+
+```
+===== DATABASE INFORMATION FOR DRUPAL SETUP =====
+Database Name is : EXAMPLE-database
+Database username is : root
+Password is : EXAMPLE
+Host MySQL is : EXAMPLE-mysql-service
+MySQL Port is : 3306
+```
+
+![MySQLExample](example_SQL_SETUP.png)
 
 ## Versions
 
