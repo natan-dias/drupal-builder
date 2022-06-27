@@ -1,4 +1,5 @@
 #!/bin/bash
+#set -e 
 echo === Deploy Drupal and MySQL ===
 echo Set the name of the new site:
 
@@ -107,7 +108,7 @@ MYSQL_PORT=$(microk8s.kubectl get svc $sitename-mysql-service -n $sitename -o js
 #IF Use password with clear text: MYSQL_PASSWORD=$(microk8s.kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[0].value}')
 
 echo Database Name is : $DATABASE_NAME
-echo Database username is : ROOT
+echo Database username is : root
 echo Password is : $MYSQL_PASSWORD
 echo Host MySQL is : $SERVICE_HOST_NAME
 echo MySQL Port is : $MYSQL_PORT

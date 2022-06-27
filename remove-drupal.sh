@@ -1,8 +1,17 @@
 #!/bin/bash
+#set -e 
 echo === Remove Drupal and MySQL ===
 echo Set the name of the site you want to remove:
 
 read sitename
+
+# TEST EXISTING NAMESPACE
+
+if microk8s.kubectl get ns -n $sitename ; then
+     echo Your removed Drupal site name is $sitename
+else
+     echo Site Not Found!, exit status: $?
+fi
 
 echo Your removed Drupal site name is $sitename
 
