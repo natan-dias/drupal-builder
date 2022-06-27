@@ -6,7 +6,7 @@ read sitename
 
 echo Your removed Drupal site name is $sitename
 
-port=$(kubectl get svc $sitename-service -n drupal -o jsonpath='{.spec.ports[*].port}')
+port=$(microk8s.kubectl get svc $sitename-service -n drupal -o jsonpath='{.spec.ports[*].port}')
 
 echo Your old Drupal PORT is $port
 
