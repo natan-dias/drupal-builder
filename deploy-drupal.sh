@@ -100,14 +100,14 @@ microk8s.kubectl get pvc -n $sitename -o wide
 
 echo ===== DATABASE INFORMATION FOR DRUPAL SETUP =====
 DATABASE_NAME=$(microk8s.kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[1].value}')
-MYSQL_PASSWORD=$(microk8s.kubectl get secret $sitename-mysql-secret -o jsonpath='{.data.password}' | base64 -d)
+MYSQL_PASSWORD=$(microk8s.kubectl get secret $sitename-mysql-secret -n $sitename -o jsonpath='{.data.password}' | base64 -d)
 SERVICE_HOST_NAME=$(microk8s.kubectl get svc -n $sitename -o jsonpath='{.items[0].metadata.name}')
 MYSQL_PORT=$(microk8s.kubectl get svc $sitename-mysql-service -n $sitename -o jsonpath='{.spec.ports[*].port}')
 
 #IF Use password with clear text: MYSQL_PASSWORD=$(microk8s.kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[0].value}')
 
-echo Database Name is ==> $DATABASE_NAME
-echo Database username is ==> ROOT
-echo Password is ==> $MYSQL_PASSWORD
-echo Host MySQL is ==> $SERVICE_HOST_NAME
-echo MySQL Port is ==> $MYSQL_PORT
+echo Database Name is : $DATABASE_NAME
+echo Database username is : ROOT
+echo Password is : $MYSQL_PASSWORD
+echo Host MySQL is : $SERVICE_HOST_NAME
+echo MySQL Port is : $MYSQL_PORT
