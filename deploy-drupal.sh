@@ -22,7 +22,7 @@ else
 fi
 sleep 3
 echo ==== Deploy MYSQL Instance Service ====
-if cat mysql/service.yml | sed "s/{{sitename}}/$sitename/g" | sed "s/{{port}}/$port/g" | microk8s.kubectl apply -f -; then
+if cat mysql/service.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubectl apply -f -; then
      echo “Success”
 else
      echo “Failure, exit status: $?”
@@ -36,7 +36,7 @@ else
 fi
 sleep 3
 echo ===== Starting Drupal Deployment =====
-echo ==== Deploy Namespace ====
+echo ===== Deploy Namespace =====
 if cat drupal/namespace.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubectl apply -f -; then
      echo “Success”
 else
@@ -63,3 +63,6 @@ if cat drupal/deployment.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubec
 else
      echo “Failure, exit status: $?”
 fi
+
+echo Checking current deployment
+microk8s.kubectl get pod -n $sitename

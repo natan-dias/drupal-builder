@@ -43,7 +43,7 @@ else
 fi
 sleep 3
 echo ==== Remove Service ====
-if cat mysql/service.yml | sed "s/{{sitename}}/$sitename/g" | sed "s/{{port}}/$port/g" | microk8s.kubectl delete -f -; then
+if cat mysql/service.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubectl delete -f -; then
      echo “Success”
 else
      echo “Failure, exit status: $?”

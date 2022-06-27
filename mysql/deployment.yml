@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: {{sitename}}-mysql
+  name: ${sitename}-mysql
   namespace: {{sitename}}
   labels:
     app: {{sitename}}-mysql
