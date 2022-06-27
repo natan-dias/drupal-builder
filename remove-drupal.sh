@@ -7,13 +7,11 @@ read sitename
 
 # TEST EXISTING NAMESPACE
 
-if microk8s.kubectl get ns -n $sitename ; then
+if $(microk8s.kubectl get namespaces --field-selector metadata.name=$sitename -o=name) then
      echo Your removed Drupal site name is $sitename
 else
-     echo Site Not Found!, exit status: $?
+     echo Site Not Found! Nothing will be removed, exit status: $?
 fi
-
-echo Your removed Drupal site name is $sitename
 
 port=$(microk8s.kubectl get svc $sitename-service -n $sitename -o jsonpath='{.spec.ports[*].port}')
 
