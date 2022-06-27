@@ -29,7 +29,10 @@ spec:
           image: "mysql:5.7.38"
           env: 
           - name: MYSQL_ROOT_PASSWORD
-            value: 1q2w3e4r5t
+            valueFrom:
+              secretKeyRef:
+                name: {{sitename}}-mysql-secret
+                key: password
           - name: MYSQL_DATABASE
             value: {{sitename}}-database
           ports:

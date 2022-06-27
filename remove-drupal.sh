@@ -69,6 +69,6 @@ else
 fi
 
 # Removing local files
-echo Removing files # Just for lab 
+echo Removing files... # Just for lab 
 sudo rm -rf /storage/$sitename-filestore/
 sudo rm -rf /storage/$sitename-mysql-filestore/
