@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e 
+set -e 
 echo === Deploy Drupal and MySQL ===
 echo Set the name of the new site:
 

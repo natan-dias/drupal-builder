@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e 
+set -e 
 echo === Remove Drupal and MySQL ===
 echo Set the name of the site you want to remove:
 
