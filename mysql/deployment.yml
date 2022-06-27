@@ -20,7 +20,7 @@ spec:
         - name: init-db-volume
           image: "mysql:5.7.38"
           command: ['/bin/bash', '-c']
-          args: ['touch /var/lib/mysql/readme.md;']
+          args: ['touch /var/lib/mysql/readme.md;'] #Just to create the local folder
           volumeMounts:
             - name: vol-drupal-mysql
               mountPath: /var/lib/mysql

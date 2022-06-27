@@ -85,3 +85,14 @@ microk8s.kubectl get pod -n $sitename -o wide
 microk8s.kubectl get svc -n $sitename -o wide
 
 microk8s.kubectl get pvc -n $sitename -o wide
+
+echo ===== DATABASE INFORMATION FOR DRUPAL SETUP =====
+DATABASE_NAME=$(microk8s.kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[1].value}')
+PASSWORD=$(kubectl get deploy $sitename-mysql -n $sitename -o jsonpath='{.spec.template.spec.containers[*].env[0].value}')
+SERVICE_HOST_NAME=$(kubectl get svc -n $sitename -o jsonpath='{.items[1].metadata.name}')
+MYSQL_PORT=$(kubectl get svc $sitename-mysql-service -n $sitename -o jsonpath='{.spec.ports[*].port}')
+
+echo Database Name is $DATABASE_NAME
+echo Password is $PASSWORD
+echo Host MySQL is $SERVICE_HOST_NAME
+echo MySQL Port is $MYSQL_PORT

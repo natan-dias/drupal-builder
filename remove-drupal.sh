@@ -67,3 +67,8 @@ if cat mysql/namespace.yml | sed "s/{{sitename}}/$sitename/g" | microk8s.kubectl
 else
      echo “Failure, exit status: $?”
 fi
+
+# Removing local files
+echo Removing files # Just for lab 
+sudo rm -rf /storage/$sitename-filestore/
+sudo rm -rf /storage/$sitename-mysql-filestore/
