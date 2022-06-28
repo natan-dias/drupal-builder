@@ -1,6 +1,6 @@
 # Drupal Builder for Kubernetes
 
-A simple Drupal 8 site builder for Kubernetes
+A simple Drupal 8.9 site builder for Kubernetes
 
 ## Disclaimer
 
@@ -60,7 +60,7 @@ It will do the following tasks:
 - Port for Drupal (mapped local port for HTTP. Only for DEV);
 - Secret for a Random MySQL Password;
 - Deploy MySQL pod with some default settings;
-- Deploy Drupal 8.6.
+- Deploy Drupal 8.9.20.
 
 At the end of the deploy script, it will be an output with Drupal and Database informations:
 
@@ -80,7 +80,7 @@ MySQL Port is : 3306
 |Name |Version Number|
 |-----|--------|
 |K8s  | 1.22    |
-|Drupal | 8.6   |
+|Drupal | 8.9.20   |
 |MySQL | 5.7.38 |
 
 ## Remove Drupal
