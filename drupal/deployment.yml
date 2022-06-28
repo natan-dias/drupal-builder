@@ -18,15 +18,15 @@ spec:
     spec: 
       initContainers:
         - name: init-sites-volume
-          image: "drupal:8.6"
+          image: "drupal:8.9.20-php7.4-apache"
           command: ['/bin/bash', '-c']
-          args: ['cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R']
+          args: ['cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R; curl -sS https://getcomposer.org/installer | php; mv composer.phar /usr/local/bin/composer' ]
           volumeMounts:
             - name: vol-drupal
               mountPath: /data
       containers: 
         - name: drupal
-          image: "drupal:8.6"
+          image: "drupal:8.9.20-php7.4-apache"
           ports:
           - containerPort: 80
           resources:
