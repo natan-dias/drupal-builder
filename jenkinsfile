@@ -17,6 +17,7 @@ pipeline {
     stage('Deploy Drupal New Site') {
         steps {
             dir ("$JENKINS_HOME/infra/drupal-builder"){
+                sh "chmod +x deploy-drupal.sh"
                 sh "deploy-drupal.sh"
             }
         }
