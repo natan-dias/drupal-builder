@@ -7,8 +7,8 @@ pipeline {
   stages {
     stage('Git Checkout') {
         steps {
-            sh "mkdir -p $JENKINS_HOME/infra/drupal-builder"
-            dir ("$JENKINS_HOME/infra/drupal-builder"){
+            sh "mkdir -p $JENKINS_HOME/infra"
+            dir ("$JENKINS_HOME/infra"){
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/natan-dias/drupal-builder.git']]])
             }
         }
@@ -16,7 +16,7 @@ pipeline {
 
     stage('Deploy Drupal New Site') {
         steps {
-            dir ("$JENKINS_HOME/infra/drupal-builder"){
+            dir ("$JENKINS_HOME/infra"){
                 sh "chmod +x deploy-drupal.sh"
                 sh "deploy-drupal.sh"
             }
