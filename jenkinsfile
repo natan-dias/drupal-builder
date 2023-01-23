@@ -18,7 +18,7 @@ pipeline {
         steps {
             dir ("$JENKINS_HOME/infra"){
                 sh "chmod +x deploy-drupal.sh"
-                sh "deploy-drupal.sh"
+                sh "./deploy-drupal.sh"
             }
         }
     }
