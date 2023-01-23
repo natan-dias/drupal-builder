@@ -1,0 +1,36 @@
+pipeline {
+  agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+  }
+
+  stages {
+    stage('Git Checkout') {
+        steps {
+            sh "mkdir -p $JENKINS_HOME/infra"
+            dir ("$JENKINS_HOME/infra"){
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/natan-dias/drupal-builder.git']]])
+            }
+        }
+    }
+
+    stage('Deploy Drupal New Site') {
+        steps {
+            dir ("$JENKINS_HOME/infra/drupal-builder"){
+                sh "deploy-drupal.sh"
+            }
+        }
+    }
+
+    /*stage('Copy SRC') {
+        steps {
+            script{
+            sh (label: 'kubectl', script: ''' 
+            kubectl exec -n nginx deployment/nginx -- bash -c "rm -rf /usr/share/nginx/html/* && rm -rf /usr/share/nginx/html/.git"
+            kubectl exec -n nginx deployment/nginx -- bash -c "cd /usr/share/nginx/html/ && git clone https://github.com/natan-dias/webserver-example-src.git ."
+            ''')
+            }
+        }
+    }*/
+  }
+}
