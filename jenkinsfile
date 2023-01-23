@@ -8,7 +8,7 @@ pipeline {
     stage('Git Checkout') {
         steps {
             sh "mkdir -p $JENKINS_HOME/infra/drupal-builder"
-            dir ("$JENKINS_HOME/infra"){
+            dir ("$JENKINS_HOME/infra/drupal-builder"){
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/natan-dias/drupal-builder.git']]])
             }
         }
